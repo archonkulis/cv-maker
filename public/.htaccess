@@ -1,0 +1,6 @@
+#Pārrakstām visus pieprasījumus uz index.php ( ieejas punkts )
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^ index.php [QSA,L]
+RewriteRule .* index.php/$0 [PT,L]

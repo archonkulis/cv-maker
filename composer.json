@@ -1,0 +1,20 @@
+{
+  "name": "ArtursN/cv-maker",
+  "description": "CV izveide ( pārbaudes uzdevums )",
+  "require": {
+    "dompdf/dompdf" : "0.6.*"
+  },
+  "authors": [
+    {
+      "name": "Artūrs Ņikitins",
+      "email": "arturs.nikitins2@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "app/lib",
+      "app/controllers",
+      "app/models"
+    ]
+  }
+}

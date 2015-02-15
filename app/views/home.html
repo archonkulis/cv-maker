@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CV Maker</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+    <form class="form-horizontal" action="cv/create" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Izveido savu CV</legend>
+
+            <div id="cv-top-wrapper">
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="first_name">Vārds</label>
+                    <div class="col-md-4">
+                        <input id="first_name" name="first_name" type="text" placeholder="" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="last_name">Uzvārds</label>
+                    <div class="col-md-4">
+                        <input id="last_name" name="last_name" type="text" placeholder="" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="birthday">Dzimšanas diena</label>
+                    <div class="col-md-4">
+                        <input id="birthday" name="birthday" type="date" placeholder="" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">E-pasts</label>
+                    <div class="col-md-4">
+                        <input id="email" name="email" type="email" placeholder="" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="image">Bilde</label>
+                    <div class="col-md-4">
+                        <input id="image" name="image" type="file" placeholder="" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Izglītības iestādes</label>
+                    <div class="col-md-4">
+                        <input name="education[1][school_name]" type="text" placeholder="Iestādes nosaukums" class="form-control input-md" required>
+                        <input name="education[1][year_from]" type="text" placeholder="Gads no" class="form-control input-md" required>
+                        <input name="education[1][year_to]" type="text" placeholder="Gads līdz" class="form-control input-md" required>
+                        <input name="education[1][speciality]" type="text" placeholder="Specialitāte" class="form-control input-md" required>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <input type="button" class="btn btn-primary" id="more_fields" onclick="addSchool();" value="Pievienot iestādi" />
+                </div>
+            </div>
+
+            <div id="cv-bottom-wrapper">
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Valodu zināšanas</label>
+                    <div class="col-md-4">
+                        <input id="spoken" name="languages[1][language]" type="text" value="Latviešu" class="form-control input-md" required readonly>
+                        <input id="spoken" name="languages[1][spoken]" type="text" placeholder="Runātprasme" class="form-control input-md" required>
+                        <input id="oral" name="languages[1][reading]" type="text" placeholder="Lasītprasme" class="form-control input-md" required>
+                        <input id="written" name="languages[1][written]" type="text" placeholder="Rakstītprasme" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                        <input id="spoken" name="languages[2][language]" type="text" value="Angļu" class="form-control input-md" required readonly>
+                        <input id="spoken" name="languages[2][spoken]" type="text" placeholder="Runātprasme" class="form-control input-md" required>
+                        <input id="oral" name="languages[2][reading]" type="text" placeholder="Lasītprasme" class="form-control input-md" required>
+                        <input id="written" name="languages[2][written]" type="text" placeholder="Rakstītprasme" class="form-control input-md" required>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                        <input id="spoken" name="languages[3][language]" type="text" value="Krievu" class="form-control input-md" required readonly>
+                        <input id="spoken" name="languages[3][spoken]" type="text" placeholder="Runātprasme" class="form-control input-md" required>
+                        <input id="oral" name="languages[3][reading]" type="text" placeholder="Lasītprasme" class="form-control input-md" required>
+                        <input id="written" name="languages[3][written]" type="text" placeholder="Rakstītprasme" class="form-control input-md" required>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <input type="button" class="btn btn-primary" onclick="addLanguage();" value="Pievienot valodu" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <input class="btn btn-success" name="create_cv" type="submit" value="Izveidot CV">
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+    <script src="js/functions.js"></script>
+</body>
+</html>

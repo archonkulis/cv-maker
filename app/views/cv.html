@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="css/cv.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1>CV</h1>
+        </div>
+
+        <section>
+            <h2>Pamatinformācija</h2>
+            <img src="<?php echo $image['tmp_name'] ?>" id="image" />
+            <table class="main-info">
+                <tr>
+                    <td class="label">Vārds, uzvārds:</td>
+                    <td class="name"><?php echo $first_name . ' ' . $last_name ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Dzimšanas datums:</td>
+                    <td><?php echo $birthday ?></td>
+                </tr>
+                <tr>
+                    <td class="label">E-pasta adrese:</td>
+                    <td><?php echo $email ?></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Izglītība</h2>
+            <?php foreach ($education as $school): ?>
+                <table class="main-info education">
+                    <tr>
+                        <td class="label">Izglītības iestādes nosaukums:</td>
+                        <td class="name"><?php echo $school['school_name'] ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Gads no:</td>
+                        <td><?php echo $school['year_from'] ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Gads līdz:</td>
+                        <td><?php echo $school['year_to'] ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label">Specialitāte:</td>
+                        <td><?php echo $school['speciality'] ?></td>
+                    </tr>
+                </table>
+            <?php endforeach ?>
+        </section>
+
+        <section>
+            <h2>Valodu zināšanas</h2>
+            <table class="main-info languages">
+                <tr>
+                    <th></th>
+                    <th>Valoda</th>
+                    <th>Runātprasme</th>
+                    <th>Lasītprasme</th>
+                    <th>Rakstītprasme</th>
+                </tr>
+                <?php foreach ($languages as $i => $language): ?>
+                    <tr>
+                        <td><?php echo $i . '.' ?></td>
+                        <td><?php echo $language['language'] ?></td>
+                        <td><?php echo $language['spoken'] ?></td>
+                        <td><?php echo $language['reading'] ?></td>
+                        <td><?php echo $language['written'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </section>
+
+    </body>
+</html>

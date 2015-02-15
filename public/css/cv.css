@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 22px;
+    border-bottom: 5px solid #d3d3d3;
+    font-weight: normal;
+}
+
+#image {
+    height: 250px;
+    width: 180px;
+    margin-left: 190px;
+}
+
+table .label {
+    text-align: right;
+}
+
+table .name {
+    font-weight: bold;
+}
+
+table.main-info {
+    margin-left: 15px;
+}
+
+.education {
+    margin-bottom: 20px;
+}
+
+table.languages {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.languages, table.languages th, table.languages tr, table.languages td {
+    text-align: left;
+    border: 1px solid #eeeeee;
+}
+
+table.languages th {
+    font-weight: normal;
+    background: #d3d3d3;
+}

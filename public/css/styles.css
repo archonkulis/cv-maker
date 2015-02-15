@@ -1,0 +1,11 @@
+.form-group div > input{
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 0px !important;
+}
+
+hr {
+    width: 70px;
+}
