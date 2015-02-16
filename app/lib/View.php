@@ -23,7 +23,7 @@ class View
     {
         if (!file_exists(dirname(__FILE__) . '/../views/' . $view . '.html'))
         {
-            die("Template " . $view . " doesn't exist.");
+            die("Skats " . $view . " neeksistē.");
         }
 
         if (!is_null($variables)) {

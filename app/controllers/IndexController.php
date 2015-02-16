@@ -2,7 +2,7 @@
 /**
  * Class IndexController
  */
-class IndexController {
+class IndexController extends BaseController {
 
     /**
      * Homepage - vienkārši atgriežam mājas lapas skatu
