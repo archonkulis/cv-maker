@@ -1,15 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: arthurio
- * Date: 15.16.2
- * Time: 15:11
+ * Class Cv
  */
-
 class Cv extends BaseModel {
-    private $firstName;
+    private $first_name;
 
-    private $lastName;
+    private $last_name;
 
     private $birthday;
 
@@ -17,7 +13,9 @@ class Cv extends BaseModel {
 
     private $image;
 
-    private $schools;
+    private $pdf;
+
+    private $education;
 
     private $languages;
 
@@ -42,7 +40,14 @@ class Cv extends BaseModel {
     public function getData($onlyValues = false)
     {
         if ($onlyValues) {
-            return array_values(get_object_vars($this));
+            $values = array_values(get_object_vars($this));
+
+            foreach ($values as $i => $value) {
+                if (is_null($value) || is_object($value)) {
+                    unset($values[$i]);
+                }
+            }
+            return $values;
         }
         return get_object_vars($this);
     }
@@ -50,17 +55,77 @@ class Cv extends BaseModel {
     /**
      * Saglabājam visu datubāzē
      *
+     * ideālā variantā, šī funkcija varētu būt abstraktajā klasē, taču testa nolūkos, derēs arī tā
+     *
      */
     public function save()
     {
-        $sql = "INSERT INTO user
-                    (first_name, last_name, email, image, pdf)
+        try {
+            $sql = "INSERT INTO user
+                    (first_name, last_name, birthday, email, image, pdf)
                 VALUES
-                    (?, ?, ?, ?)";
-        $pdo = $this->_db->prepare($sql);
+                    (?, ?, ?, ?, ?, ?)";
 
-        $data = $this->getData(true);
+            if ($this->_db) {
+                $pdo = $this->_db->prepare($sql);
 
-        return $pdo->execute($data);
+                $data = $this->getData(true);
+
+                $data = array(
+                    $data[0], // first name
+                    $data[1], // last name
+                    $data[2], // birthday
+                    $data[3], // email
+                    $data[4], // image
+                    $data[5]  // pdf
+                );
+
+                $pdo->execute($data);
+
+                $userId = $this->_db->lastInsertId();
+
+                // Nav ļoti smuki - var uztaisīt vienu insertu visām skolām, taču
+                // ņemot vērā, ka nebūs baigi daudz skolu, šis variants arī derēs
+                foreach ($this->education as $edu) {
+                    $data = array(
+                        $userId,
+                        $edu['school_name'],
+                        $edu['year_from'],
+                        $edu['year_to'],
+                        $edu['speciality']
+                    );
+
+                    $sql = "INSERT INTO schools
+                    (user_id, name, year_from, year_to, speciality)
+                VALUES
+                    (?, ?, ?, ?, ?)";
+
+                    $pdo = $this->_db->prepare($sql);
+
+                    $pdo->execute($data);
+                }
+
+                foreach ($this->languages as $language) {
+                    $data = array(
+                        $userId,
+                        $language['language'],
+                        $language['spoken'],
+                        $language['reading'],
+                        $language['written']
+                    );
+
+                    $sql = "INSERT INTO languages
+                    (user_id, language, spoken, read, write)
+                VALUES
+                    (?, ?, ?, ?, ?)";
+
+                    $pdo = $this->_db->prepare($sql);
+
+                    $pdo->execute($data);
+                }
+            }
+        } catch (Exception $e) {
+            // Neko nedarīt, jo datubāzes savienojums nav obligāts.
+        }
     }
 }
