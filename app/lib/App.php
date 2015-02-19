@@ -19,7 +19,7 @@ class App
     public static function run()
     {
         $segments = explode('/', $_SERVER['REQUEST_URI']);
-
+        #var_dump($segments);die;
         if ($_SERVER['HTTP_HOST'] === 'localhost') {
             if (isset($segments[0]) && (isset($segments[3]) && !empty($segments[3]))) {
                 $class = ucwords($segments[3]) . 'Controller';
@@ -35,11 +35,14 @@ class App
                 $method = 'indexAction';
             }
         } else { // todo - notestēt virtual hostu
-            if (isset($segments[0]) && $segments[0] !== '') {
-                $class = ucwords($segments[0]) . 'Controller';
-
-                if (isset($segments[1])) {
-                    $method = $segments[1] . 'Action';
+            if (isset($segments[0])) {
+                if (isset($segments[1]) && $segments[1] !== '') {
+                    $class = ucwords($segments[1]) . 'Controller';
+                } else {
+                    $class = 'IndexController';
+                }
+                if (isset($segments[2])) {
+                    $method = $segments[2] . 'Action';
                 }
                 else {
                     $method = 'indexAction';
