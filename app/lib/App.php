@@ -19,7 +19,7 @@ class App
     public static function run()
     {
         $segments = explode('/', $_SERVER['REQUEST_URI']);
-        #var_dump($segments);die;
+
         if ($_SERVER['HTTP_HOST'] === 'localhost') {
             if (isset($segments[0]) && (isset($segments[3]) && !empty($segments[3]))) {
                 $class = ucwords($segments[3]) . 'Controller';
