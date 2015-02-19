@@ -35,7 +35,7 @@ class App
                 $method = 'indexAction';
             }
         } else { // todo - notestēt virtual hostu
-            if (isset($segments[0])) {
+            if (isset($segments[0]) && $segments[0] !== '') {
                 $class = ucwords($segments[0]) . 'Controller';
 
                 if (isset($segments[1])) {
